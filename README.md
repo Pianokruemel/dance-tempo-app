@@ -77,6 +77,12 @@ Die in der App hinterlegten Tempi und Toleranzbereiche stützen sich auf folgend
 
 ---
 
+## 📄 Lizenz
+
+Dieses Projekt ist unter der **GNU General Public License v3.0 (GPLv3)** lizenziert — siehe [LICENSE](LICENSE).
+
+---
+
 ## 🛠️ Entwicklung & Build mit Nix
 
 Das Repository enthält eine vollständig isolierte Nix-Shell (`shell.nix`) mit OpenJDK 17, Gradle und Android SDK Platform-Tools 35.
