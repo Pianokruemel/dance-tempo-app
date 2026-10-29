@@ -1,0 +1,5 @@
+Erstes offizielles Release:
+• Präziser BPM-Tapper mit 1.-Schlag-Erkennung (Downbeat)
+• Automatische Tanz-Zuordnung (Standard, Latein, Social)
+• Lokale Song-Bibliothek mit Streaming-Integration (Spotify, YouTube Music, Deezer)
+• JSON-Backup & Wiederherstellung

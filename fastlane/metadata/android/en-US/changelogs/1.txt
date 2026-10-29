@@ -1,0 +1,5 @@
+Initial release:
+• Accurate BPM tapper with downbeat meter detection (3/4 vs 4/4)
+• Automatic ballroom, latin, and social dance matching
+• Local song library with streaming player integration (Spotify, YouTube Music, Deezer)
+• Full JSON backup and restore

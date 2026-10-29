@@ -1,0 +1,14 @@
+DanceTempo ist die Open-Source-App für Tänzer und Tanzschüler.
+
+Erkenne das Tempo von Songs durch einfaches Mittappen und erfahre sofort, welche Standard-, Latein- oder Social-Tänze dazu passen.
+
+Funktionen:
+• Präzises Tappen mit Filterung von Tempoausreißern
+• 1.-Schlag-Erkennung (Downbeat) zur Unterscheidung von 3/4- und 4/4-Takten
+• Farbige Tempo-Ampel: Tanzschul-Ideal, gemütlich oder flott
+• Detaillierte Begründungen, warum bestimmte Tänze nicht passen
+• Lokale Song-Bibliothek mit Multi-Tanz-Annotation
+• Automatische Track-Erkennung aus Spotify, YouTube Music und Deezer
+• Direkter Playback-Start in deiner bevorzugten Musik-App
+• Vollständiger JSON-Import und -Export zur Datensicherung
+• 100 % freie Open-Source-Software (GPLv3), ohne Werbung und ohne Tracker

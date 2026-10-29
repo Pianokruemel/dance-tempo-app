@@ -1,0 +1,14 @@
+DanceTempo is an open-source companion app for ballroom and social dancers.
+
+Tap along to any song to detect its tempo (BPM) and instantly discover matching Ballroom, Latin, and Social dances.
+
+Key Features:
+• Precise BPM tap engine with median outlier filtering
+• Dedicated First-Beat (Downbeat) toggle to detect 3/4 waltz vs. 4/4 meter
+• Color-coded tempo scale: Ideal dance-school speed, slow, or fast
+• Explanations for excluded dances (meter mismatch, too slow/fast)
+• Local song library with multi-dance annotation
+• Automatic song metadata detection from Spotify, YouTube Music, and Deezer
+• One-tap instant playback in your preferred streaming app
+• Full JSON backup and restore via Android Storage Access Framework
+• 100% free open-source software (GPLv3), privacy-friendly, no ads, no trackers

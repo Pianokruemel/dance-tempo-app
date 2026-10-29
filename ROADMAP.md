@@ -24,12 +24,12 @@ Diese Roadmap dokumentiert die strategischen Entscheidungen und Meilensteine fü
 ---
 
 ## 📌 Phase 3: Veröffentlichung & Distribution
-- [ ] **#7 F-Droid Readyness:**
+- [x] **#7 F-Droid Readyness:**
   - Auditierung aller Abhängigkeiten (100 % freie Software ohne Google Play Services / Tracker).
-  - Erstellung der Metadaten und Vorbereitung des Merge Requests für `fdroiddata`.
-- [ ] **#8 CI/CD Feinschliff:**
-  - Automatisierte PR-Tests (`test.yml`).
-  - Semantische Releases bei Git-Tags (`v1.0.0`).
+  - Fastlane-Metadatenstruktur (`fastlane/metadata/android/de-DE` und `en-US`) inklusive Beschreibungen und Changelogs.
+- [x] **#8 CI/CD Feinschliff:**
+  - Automatisierte PR-Validierung (`test.yml`).
+  - Duale Release-Pipeline: Tag-basierte stabile Releases (`v1.0.0`) und automatisches Rolling Pre-Release (`latest`).
 
 ---
 
