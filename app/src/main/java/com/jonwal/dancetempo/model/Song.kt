@@ -6,7 +6,6 @@ data class Song(
     val artist: String,
     val bpm: Int,
     val meter: Int,
-    val rating: Int, // 1 to 5
     val notes: String? = null,
     val streamingUrl: String? = null,
     val dances: List<Dance> = emptyList(),
@@ -33,8 +32,7 @@ data class Song(
 }
 
 enum class SongSortOrder(val displayName: String) {
-    RATING_DESC("Beste Bewertung"),
+    NEWEST_FIRST("Zuletzt hinzugefügt"),
     BPM_ASC("Tempo (BPM ⬆)"),
-    BPM_DESC("Tempo (BPM ⬇)"),
-    NEWEST_FIRST("Zuletzt hinzugefügt")
+    BPM_DESC("Tempo (BPM ⬇)")
 }

@@ -88,14 +88,6 @@ fun SongDetailBottomSheet(
                 }
             }
 
-            Spacer(modifier = Modifier.height(12.dp))
-
-            // Rating Stars
-            StarRatingBar(
-                rating = song.rating,
-                starSize = 24.dp
-            )
-
             Spacer(modifier = Modifier.height(14.dp))
 
             // Annotated Dances

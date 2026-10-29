@@ -58,17 +58,13 @@ class SongLibraryViewModel(private val repository: SongRepository) : ViewModel()
 
         // 3. Sort
         val sorted = when (sortOrder) {
-            SongSortOrder.RATING_DESC -> danceFiltered.sortedWith(
-                compareByDescending<Song> { it.rating }
-                    .thenByDescending { it.createdAt }
-            )
             SongSortOrder.BPM_ASC -> danceFiltered.sortedWith(
                 compareBy<Song> { it.bpm }
-                    .thenByDescending { it.rating }
+                    .thenByDescending { it.createdAt }
             )
             SongSortOrder.BPM_DESC -> danceFiltered.sortedWith(
                 compareByDescending<Song> { it.bpm }
-                    .thenByDescending { it.rating }
+                    .thenByDescending { it.createdAt }
             )
             SongSortOrder.NEWEST_FIRST -> danceFiltered.sortedByDescending { it.createdAt }
         }

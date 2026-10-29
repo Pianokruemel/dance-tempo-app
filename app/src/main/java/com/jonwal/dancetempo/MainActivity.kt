@@ -58,11 +58,11 @@ class MainActivity : ComponentActivity() {
                 MainAppScaffold(
                     tempoViewModel = tempoViewModel,
                     libraryViewModel = libraryViewModel,
-                    onSaveSongToRepo = { title, artist, bpm, meter, rating, notes, url, dances ->
+                    onSaveSongToRepo = { title, artist, bpm, meter, notes, url, dances ->
                         lifecycleScope.launch {
                             val db = DanceTempoDatabase.getInstance(applicationContext)
                             val repo = SongRepository(db.songDao())
-                            repo.saveSong(title, artist, bpm, meter, rating, notes, url, dances)
+                            repo.saveSong(title, artist, bpm, meter, notes, url, dances)
                             Toast.makeText(this@MainActivity, "Song '$title' gespeichert!", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -81,7 +81,6 @@ fun MainAppScaffold(
         artist: String,
         bpm: Int,
         meter: Int,
-        rating: Int,
         notes: String?,
         streamingUrl: String?,
         danceIds: List<String>
@@ -161,8 +160,8 @@ fun MainAppScaffold(
             primaryDance = match.dance,
             matchingDances = if (allMatchingDances.isNotEmpty()) allMatchingDances else listOf(match.dance),
             onDismiss = { matchToSave = null },
-            onSaveSong = { title, artist, bpm, meter, rating, notes, url, dances ->
-                onSaveSongToRepo(title, artist, bpm, meter, rating, notes, url, dances)
+            onSaveSong = { title, artist, bpm, meter, notes, url, dances ->
+                onSaveSongToRepo(title, artist, bpm, meter, notes, url, dances)
                 matchToSave = null
             }
         )

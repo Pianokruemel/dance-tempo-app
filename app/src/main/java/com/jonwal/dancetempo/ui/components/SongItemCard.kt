@@ -87,7 +87,7 @@ fun SongItemCard(
                 }
             }
 
-            // Right Column: Color-Coded BPM Badge & Stars
+            // Right Column: Color-Coded BPM Badge
             Column(
                 horizontalAlignment = Alignment.End,
                 verticalArrangement = Arrangement.Center
@@ -106,19 +106,12 @@ fun SongItemCard(
                 ) {
                     Text(
                         text = "${song.bpm} BPM",
-                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
-                        fontSize = 11.sp,
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
+                        fontSize = 12.sp,
                         fontWeight = FontWeight.Bold,
                         color = badgeColor
                     )
                 }
-
-                Spacer(modifier = Modifier.height(4.dp))
-
-                StarRatingBar(
-                    rating = song.rating,
-                    starSize = 14.dp
-                )
             }
         }
     }

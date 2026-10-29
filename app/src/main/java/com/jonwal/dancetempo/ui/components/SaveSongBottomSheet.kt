@@ -45,7 +45,6 @@ fun SaveSongBottomSheet(
         artist: String,
         bpm: Int,
         meter: Int,
-        rating: Int,
         notes: String?,
         streamingUrl: String?,
         danceIds: List<String>
@@ -56,7 +55,6 @@ fun SaveSongBottomSheet(
 
     var title by remember { mutableStateOf(detectedTrack?.title ?: "") }
     var artist by remember { mutableStateOf(detectedTrack?.artist ?: "") }
-    var rating by remember { mutableIntStateOf(5) }
     var notes by remember { mutableStateOf("") }
     var streamingUrl by remember { mutableStateOf("") }
 
@@ -379,20 +377,6 @@ fun SaveSongBottomSheet(
 
             Spacer(modifier = Modifier.height(14.dp))
 
-            // Rating Stars
-            Text(
-                text = "Tanzbarkeit / Bewertung:",
-                fontSize = 12.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            Spacer(modifier = Modifier.height(4.dp))
-            StarRatingBar(
-                rating = rating,
-                onRatingChanged = { rating = it },
-                starSize = 32.dp
-            )
-
             Spacer(modifier = Modifier.height(14.dp))
 
             // Notes Input
@@ -428,7 +412,6 @@ fun SaveSongBottomSheet(
                             artist.trim(),
                             bpm,
                             meter,
-                            rating,
                             notes.trim().ifBlank { null },
                             streamingUrl.trim().ifBlank { null },
                             selectedDanceIds.toList()

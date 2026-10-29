@@ -12,7 +12,6 @@ data class SongEntity(
     val artist: String,
     val bpm: Int,
     val meter: Int, // 2, 3, 4
-    val rating: Int, // 1 to 5
     val notes: String? = null,
     @ColumnInfo(name = "streaming_url")
     val streamingUrl: String? = null,

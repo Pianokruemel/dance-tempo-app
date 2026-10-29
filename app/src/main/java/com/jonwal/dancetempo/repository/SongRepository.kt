@@ -20,7 +20,6 @@ class SongRepository(private val songDao: SongDao) {
                 artist = item.song.artist,
                 bpm = item.song.bpm,
                 meter = item.song.meter,
-                rating = item.song.rating,
                 notes = item.song.notes,
                 streamingUrl = item.song.streamingUrl,
                 dances = mappedDances,
@@ -34,7 +33,6 @@ class SongRepository(private val songDao: SongDao) {
         artist: String,
         bpm: Int,
         meter: Int,
-        rating: Int,
         notes: String?,
         streamingUrl: String?,
         danceIds: List<String>
@@ -44,7 +42,6 @@ class SongRepository(private val songDao: SongDao) {
             artist = artist.trim(),
             bpm = bpm,
             meter = meter,
-            rating = rating.coerceIn(1, 5),
             notes = notes?.trim()?.ifBlank { null },
             streamingUrl = streamingUrl?.trim()?.ifBlank { null }
         )
