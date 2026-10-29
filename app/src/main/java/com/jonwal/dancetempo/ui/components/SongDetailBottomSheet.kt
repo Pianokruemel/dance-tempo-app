@@ -148,42 +148,32 @@ fun SongDetailBottomSheet(
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            // Action Buttons: Play in Streaming App & Delete
+            // Action Buttons: Play in Preferred Streaming App & Delete
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                val hasExplicitUrl = !song.streamingUrl.isNullOrBlank()
-                val targetUrl = if (hasExplicitUrl) {
-                    song.streamingUrl!!
-                } else {
-                    com.jonwal.dancetempo.data.service.MediaPlaybackTracker.resolveStreamingUrl(
-                        title = song.title,
-                        artist = song.artist,
-                        sourcePackage = "com.spotify.music",
-                        rawIdOrUrl = null
-                    )
-                }
+                val prefs = remember { com.jonwal.dancetempo.data.local.PreferencesManager(context) }
+                val preferredApp = remember { prefs.getPreferredMusicApp() }
 
                 Button(
                     onClick = {
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(targetUrl))
-                        try {
-                            context.startActivity(intent)
-                        } catch (_: Exception) {}
+                        com.jonwal.dancetempo.logic.MusicPlaybackHelper.playSong(
+                            context = context,
+                            song = song,
+                            preferredApp = preferredApp
+                        )
                     },
                     modifier = Modifier.weight(1f),
                     shape = RoundedCornerShape(10.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = if (hasExplicitUrl) PrimaryBlue else AccentOrange
-                    )
+                    colors = ButtonDefaults.buttonColors(containerColor = PrimaryBlue)
                 ) {
                     Icon(
-                        imageVector = if (hasExplicitUrl) Icons.Default.PlayArrow else Icons.Default.Search,
+                        imageVector = Icons.Default.PlayArrow,
                         contentDescription = null
                     )
                     Spacer(modifier = Modifier.width(6.dp))
-                    Text(if (hasExplicitUrl) "Abspielen" else "In Spotify suchen")
+                    Text("In ${preferredApp.displayName.substringBefore(" ")} abspielen")
                 }
 
                 OutlinedButton(

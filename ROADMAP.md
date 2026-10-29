@@ -14,10 +14,10 @@ Diese Roadmap dokumentiert die strategischen Entscheidungen und Meilensteine fü
 ---
 
 ## 📌 Phase 2: Daten & Konnektivität
-- [ ] **#1 Universelle Musik-App-Unterstützung & Einstellungsseite:**
+- [x] **#1 Universelle Musik-App-Unterstützung & Einstellungsseite:**
   - Einstellungsmenü mit Auswahl des bevorzugten Standard-Players (Spotify, YouTube Music, Deezer, Apple Music, System-Standard).
   - Direkter Start via Android Search Intent oder App-spezifischem Deep-Link beim Klick auf *„Abspielen“*.
-- [ ] **#2 Import & Export der Bibliothek:**
+- [x] **#2 Import & Export der Bibliothek:**
   - JSON-Backup & Restore über das native Android Storage Access Framework.
   - Optionaler CSV-Export für Excel/Tabellen.
 

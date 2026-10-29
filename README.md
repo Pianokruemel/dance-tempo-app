@@ -63,14 +63,15 @@ Die hinterlegten Normen und Toleranzbereiche basieren auf den Richtlinien und Er
   * 🟡 **Gelb:** Spritzig / Sportlich
 * **Ausschluss-Begründungen:** Zeigt bei nicht passenden Tänzen konkret an, warum sie nicht zutreffen (falsche Taktart, zu langsam inkl. BPM-Differenz $\Delta$, zu schnell).
 
-### 2. Song-Bibliothek & Spotify-Integration
-* **Schnelles Speichern:** Lesezeichen-Icon auf jeder passenden Tanzkarte öffnet direkt das Vorbefüllungs-Sheet.
-* **Automatische Erkennung via MediaSession:** Liest Titel, Interpret und Track-URI laufender Spotify- oder YouTube-Music-Wiedergaben automatisch aus.
+### 2. Song-Bibliothek, Streaming & Backup
+* **Schnelles Speichern & Duplikaterkennung:** Lesezeichen-Icon auf jeder Tanzkarte öffnet direkt das Vorbefüllungs-Sheet. Existiert ein Song bereits, werden neue Tanzstile automatisch ergänzt statt Duplikate anzulegen.
+* **Automatische Erkennung via MediaSession:** Liest Titel, Interpret und Track-URI laufender Spotify-, YouTube-Music- oder Deezer-Wiedergaben automatisch aus.
 * **Multi-Tanz-Annotation:** Ein Song kann mehreren Tänzen gleichzeitig zugewiesen werden.
-* **Streaming & Suche:**
-  * Songs mit hinterlegter URL starten mit einem Klick direkt in Spotify (`▶ Abspielen`).
-  * Songs ohne URL erhalten einen automatischen Suchlink (`🔍 In Spotify suchen`).
+* **Einstellbare Standard-Musik-App:** In den Einstellungen kann der bevorzugte Player gewählt werden (Spotify, YouTube Music, Deezer, Apple Music oder System-Standard).
+* **Direktes Abspielen & Deep-Link Suche:**
+  * Ein Klick auf `▶ Abspielen` startet den Song direkt in der gewählten Standard-App (via Android Media Search Intent oder direktem Link).
 * **Farbcodierte BPM-Badges:** Die BPM-Anzeige in der Bibliotheksliste übernimmt die Farbcodierung passend zum gefilterten Tanz.
+* **Import & Export (Backup):** Über das Einstellungsmenü kann die gesamte Song-Bibliothek als JSON exportiert und wiederhergestellt werden (Storage Access Framework).
 
 ---
 

@@ -1,9 +1,11 @@
 package com.jonwal.dancetempo
 
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -13,16 +15,17 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.jonwal.dancetempo.data.local.DanceTempoDatabase
+import com.jonwal.dancetempo.data.local.LibraryBackupHelper
 import com.jonwal.dancetempo.model.DanceMatch
 import com.jonwal.dancetempo.model.DanceMismatch
 import com.jonwal.dancetempo.repository.SongRepository
 import com.jonwal.dancetempo.ui.components.SaveSongBottomSheet
+import com.jonwal.dancetempo.ui.components.SettingsBottomSheet
 import com.jonwal.dancetempo.ui.screens.LibraryScreen
 import com.jonwal.dancetempo.ui.screens.TapperScreen
 import com.jonwal.dancetempo.ui.theme.AccentOrange
@@ -30,6 +33,7 @@ import com.jonwal.dancetempo.ui.theme.DanceTempoTheme
 import com.jonwal.dancetempo.ui.theme.PrimaryBlue
 import com.jonwal.dancetempo.viewmodel.DanceTempoViewModel
 import com.jonwal.dancetempo.viewmodel.SongLibraryViewModel
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 enum class AppTab(val title: String) {
@@ -52,6 +56,69 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    private val exportJsonLauncher = registerForActivityResult(
+        ActivityResultContracts.CreateDocument("application/json")
+    ) { uri: Uri? ->
+        if (uri != null) {
+            lifecycleScope.launch {
+                try {
+                    val db = DanceTempoDatabase.getInstance(applicationContext)
+                    val repo = SongRepository(db.songDao())
+                    val songs = repo.songsStream.first()
+                    val json = LibraryBackupHelper.exportToJson(songs)
+
+                    contentResolver.openOutputStream(uri)?.use { out ->
+                        out.write(json.toByteArray(Charsets.UTF_8))
+                    }
+                    Toast.makeText(this@MainActivity, "${songs.size} Songs exportiert!", Toast.LENGTH_SHORT).show()
+                } catch (e: Exception) {
+                    Toast.makeText(this@MainActivity, "Export fehlgeschlagen: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+    private val importJsonLauncher = registerForActivityResult(
+        ActivityResultContracts.OpenDocument()
+    ) { uri: Uri? ->
+        if (uri != null) {
+            lifecycleScope.launch {
+                try {
+                    val json = contentResolver.openInputStream(uri)?.use { input ->
+                        input.bufferedReader().readText()
+                    } ?: ""
+
+                    val parsed = LibraryBackupHelper.parseJson(json)
+                    if (parsed.isEmpty()) {
+                        Toast.makeText(this@MainActivity, "Keine gültigen Songs in der Datei gefunden.", Toast.LENGTH_LONG).show()
+                        return@launch
+                    }
+
+                    val db = DanceTempoDatabase.getInstance(applicationContext)
+                    val repo = SongRepository(db.songDao())
+
+                    var count = 0
+                    parsed.forEach { (song, danceIds) ->
+                        repo.saveSong(
+                            title = song.title,
+                            artist = song.artist,
+                            bpm = song.bpm,
+                            meter = song.meter,
+                            notes = song.notes,
+                            streamingUrl = song.streamingUrl,
+                            danceIds = danceIds
+                        )
+                        count++
+                    }
+
+                    Toast.makeText(this@MainActivity, "$count Songs erfolgreich importiert!", Toast.LENGTH_SHORT).show()
+                } catch (e: Exception) {
+                    Toast.makeText(this@MainActivity, "Import fehlgeschlagen: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -66,6 +133,12 @@ class MainActivity : ComponentActivity() {
                             repo.saveSong(title, artist, bpm, meter, notes, url, dances)
                             Toast.makeText(this@MainActivity, "Song '$title' gespeichert!", Toast.LENGTH_SHORT).show()
                         }
+                    },
+                    onExportJson = {
+                        exportJsonLauncher.launch("dancetempo_backup.json")
+                    },
+                    onImportJson = {
+                        importJsonLauncher.launch(arrayOf("application/json", "text/*"))
                     }
                 )
             }
@@ -85,11 +158,14 @@ fun MainAppScaffold(
         notes: String?,
         streamingUrl: String?,
         danceIds: List<String>
-    ) -> Unit
+    ) -> Unit,
+    onExportJson: () -> Unit,
+    onImportJson: () -> Unit
 ) {
     var currentTab by remember { mutableStateOf(AppTab.TAPPER) }
     var matchToSave by remember { mutableStateOf<DanceMatch?>(null) }
-    var mismatchToSave by remember { mutableStateOf<com.jonwal.dancetempo.model.DanceMismatch?>(null) }
+    var mismatchToSave by remember { mutableStateOf<DanceMismatch?>(null) }
+    var isSettingsOpen by remember { mutableStateOf(false) }
     val tempoState by tempoViewModel.uiState.collectAsState()
 
     Scaffold(
@@ -144,11 +220,21 @@ fun MainAppScaffold(
                 }
                 AppTab.LIBRARY -> {
                     LibraryScreen(
-                        viewModel = libraryViewModel
+                        viewModel = libraryViewModel,
+                        onOpenSettings = { isSettingsOpen = true }
                     )
                 }
             }
         }
+    }
+
+    // Settings BottomSheet
+    if (isSettingsOpen) {
+        SettingsBottomSheet(
+            onDismiss = { isSettingsOpen = false },
+            onExportJsonClicked = onExportJson,
+            onImportJsonClicked = onImportJson
+        )
     }
 
     // Save Song BottomSheet when user clicks Bookmark icon on a dance card

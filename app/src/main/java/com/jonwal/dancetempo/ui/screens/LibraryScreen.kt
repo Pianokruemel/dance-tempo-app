@@ -9,6 +9,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Sort
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -30,6 +31,7 @@ import com.jonwal.dancetempo.viewmodel.SongLibraryViewModel
 @Composable
 fun LibraryScreen(
     viewModel: SongLibraryViewModel,
+    onOpenSettings: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val state by viewModel.uiState.collectAsState()
@@ -77,6 +79,15 @@ fun LibraryScreen(
                         imageVector = if (state.isSearchActive) Icons.Default.Close else Icons.Default.Search,
                         contentDescription = "Suche",
                         tint = if (state.isSearchActive) AccentOrange else MaterialTheme.colorScheme.onSurface
+                    )
+                }
+
+                // Settings Button
+                IconButton(onClick = onOpenSettings) {
+                    Icon(
+                        imageVector = Icons.Default.Settings,
+                        contentDescription = "Einstellungen",
+                        tint = MaterialTheme.colorScheme.onSurface
                     )
                 }
 
