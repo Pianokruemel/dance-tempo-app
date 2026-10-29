@@ -1,10 +1,12 @@
 package com.jonwal.dancetempo.ui.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -31,6 +33,7 @@ fun TapperScreen(
     modifier: Modifier = Modifier
 ) {
     val state by viewModel.uiState.collectAsState()
+    var showAiInfoDialog by remember { mutableStateOf(false) }
 
     Column(
         modifier = modifier
@@ -45,12 +48,24 @@ fun TapperScreen(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = "💃 DanceTempo",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onBackground
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.clickable { showAiInfoDialog = true }
+            ) {
+                Text(
+                    text = "💃 DanceTempo",
+                    fontSize = 19.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+                Spacer(modifier = Modifier.width(4.dp))
+                Icon(
+                    imageVector = Icons.Default.Info,
+                    contentDescription = "Über DanceTempo",
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
+                    modifier = Modifier.size(16.dp)
+                )
+            }
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 // Hobby / Turnier Toggle Chip
@@ -234,6 +249,56 @@ fun TapperScreen(
         TapArea(
             isBeat1Active = state.isBeat1ModeActive,
             onTap = { isBeat1 -> viewModel.onUserTap(isBeat1) }
+        )
+    }
+
+    // AI & Open-Source Disclaimer Dialog
+    if (showAiInfoDialog) {
+        AlertDialog(
+            onDismissRequest = { showAiInfoDialog = false },
+            title = {
+                Text(
+                    text = "Über DanceTempo",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp
+                )
+            },
+            text = {
+                Column {
+                    Text(
+                        text = "🤖 KI-Entwicklungs-Hinweis",
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 13.sp,
+                        color = com.jonwal.dancetempo.ui.theme.PrimaryBlue
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = "Diese App wurde vollständig unter Einsatz moderner KI-Coding-Tools (LLM Agentic Coding) entwickelt. Konzeption, Architektur, Kotlin/Compose-Code, Algorithmen und Tests entstanden im interaktiven Pair-Programming zwischen Entwickler und KI.",
+                        fontSize = 12.sp,
+                        lineHeight = 16.sp,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Text(
+                        text = "📄 Open Source & Lizenz",
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 13.sp,
+                        color = com.jonwal.dancetempo.ui.theme.AccentOrange
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = "DanceTempo ist freie Open-Source-Software unter der GNU General Public License v3 (GPLv3).",
+                        fontSize = 12.sp,
+                        lineHeight = 16.sp,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { showAiInfoDialog = false }) {
+                    Text("Schließen")
+                }
+            }
         )
     }
 }
