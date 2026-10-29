@@ -17,19 +17,26 @@
         android:fillColor="#3B82F6"
         android:pathData="M34,76 L74,76 L72,80 L36,80 Z" />
 
-    <!-- Swinging Pendulum Rod -->
-    <path
-        android:strokeColor="#F8FAFC"
-        android:strokeWidth="2.5"
-        android:strokeLineCap="round"
-        android:pathData="M54,72 L67,36" />
+    <!-- Swinging Pendulum Rod with Mathematically Centered Weight -->
+    <group
+        android:pivotX="54"
+        android:pivotY="72"
+        android:rotation="20">
+        <!-- Rod centered at x=54 -->
+        <path
+            android:strokeColor="#F8FAFC"
+            android:strokeWidth="2.5"
+            android:strokeLineCap="round"
+            android:pathData="M54,72 L54,34" />
 
-    <!-- Metronome Weight (Accent Orange) -->
-    <path
-        android:fillColor="#F97316"
-        android:strokeColor="#FFFFFF"
-        android:strokeWidth="1"
-        android:pathData="M60,45 L69,42 L72,49 L63,52 Z" />
+        <!-- Metronome Weight symmetrically centered on the rod (x=54) -->
+        <path
+            android:fillColor="#F97316"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="1"
+            android:strokeLineJoin="round"
+            android:pathData="M47.5,54 L60.5,54 L58.5,46 L49.5,46 Z" />
+    </group>
 
     <!-- Tempo Pulse Arc / Rhythm Wave -->
     <path
