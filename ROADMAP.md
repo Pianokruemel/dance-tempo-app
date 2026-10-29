@@ -34,9 +34,9 @@ Diese Roadmap dokumentiert die strategischen Entscheidungen und Meilensteine fü
 ---
 
 ## 📌 Phase 4: Fortgeschrittene Tanz-Features & Automation
-- [ ] **#9 Rhythmus-Mustererkennung (Tap-Pattern-Matching):**
-  - Erkennung von Tanzrhythmen ohne Mikrofon über getappte Zeitverhältnisse (z. B. *Slow-Slow-Quick-Quick* für Foxtrott, *Slow-Quick-Quick* für Slowfox, *1-a-2* für Samba Bounce).
-  - Algorithmus: Normalisiertes Intervallverhältnis / Dynamic Time Warping (DTW).
-- [ ] **#4 Musik-Mixer & Playlist-Generator:**
-  - Automatische Generierung von Tanzabend-Playlists nach Kriterien (Dauer, Tanzstile, abwechselnde Tempi).
-  - Übergabe / Erstellung der Playlist in der konfigurierten Musik-App.
+- [x] **#9 Rhythmus-Mustererkennung (Tap-Pattern-Matching):**
+  - Erkennung von Tanzrhythmen ohne Mikrofon über getappte Zeitverhältnisse (z. B. *Slow-Slow-Quick-Quick* für Foxtrott, *Slow-Quick-Quick* für Slowfox, *1-a-2* für Samba Bounce, *2-3-4-&-1* für Cha-Cha-Cha).
+  - Algorithmus: Normalisiertes MSE-Intervallverhältnis mit dynamischer Skalierung.
+- [x] **#4 Musik-Mixer & Playlist-Generator:**
+  - Automatische Generierung von Tanzabend-Playlists nach Kriterien (Dauer z. B. 15/30/60 Min, Tanzstile, Schutz vor zwei schnellen Tänzen hintereinander).
+  - Direktes Abspielen der Mix-Songs in der konfigurierten Standard-Streaming-App.

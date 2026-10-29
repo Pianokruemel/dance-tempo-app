@@ -57,14 +57,16 @@ Die hinterlegten Normen und Toleranzbereiche basieren auf den Richtlinien und Er
 * **1.-Schlag-Downbeat-Erkennung:**
   * Bei zugeschaltetem Toggle teilt sich der Tap-Bereich: Links das orangefarbene Feld für Schlag 1 (Downbeat), rechts das blaue Feld für die Folgeschläge (2, 3, 4...).
   * Erkennt automatisch das Metrum (z. B. `3/4` Walzer vs. `4/4` Quickstep/Cha-Cha-Cha).
+* **Rhythmus-Mustererkennung:** Tappst du anstelle sturer Viertel die rhythmischen Schrittmuster (z. B. *Slow-Slow-Quick-Quick* für Foxtrott, *Slow-Quick-Quick* für Slowfox, *1-a-2* für Samba Bounce oder *2-3-4-&-1* für Cha-Cha-Cha), erkennt die App das Muster automatisch per Intervallanalyse.
 * **Visuelle Tempo-Ampel:**
-  * 🟢 **Grün:** Tanzschul-Ideal bzw. WDSF-Turniertempo
+  * 🟢 **Grün:** Tanzschul-Ideal
   * 🔵 **Blau:** Gemütlich / Einsteiger
   * 🟡 **Gelb:** Spritzig / Sportlich
 * **Ausschluss-Begründungen:** Zeigt bei nicht passenden Tänzen konkret an, warum sie nicht zutreffen (falsche Taktart, zu langsam inkl. BPM-Differenz $\Delta$, zu schnell).
 
-### 2. Song-Bibliothek, Streaming & Backup
+### 2. Song-Bibliothek, Tanz-Mixer & Backup
 * **Schnelles Speichern & Duplikaterkennung:** Lesezeichen-Icon auf jeder Tanzkarte öffnet direkt das Vorbefüllungs-Sheet. Existiert ein Song bereits, werden neue Tanzstile automatisch ergänzt statt Duplikate anzulegen.
+* **🎶 Tanz-Mixer (Playlist-Generator):** Generiert per Knopfdruck abwechslungsreiche Tanzabend-Playlists nach Wunschdauer (15, 30, 60 Min oder alle Songs) mit Anti-Ermüdungsschutz (keine zwei schnellen Tänze hintereinander).
 * **Automatische Erkennung via MediaSession:** Liest Titel, Interpret und Track-URI laufender Spotify-, YouTube-Music- oder Deezer-Wiedergaben automatisch aus.
 * **Multi-Tanz-Annotation:** Ein Song kann mehreren Tänzen gleichzeitig zugewiesen werden.
 * **Einstellbare Standard-Musik-App:** In den Einstellungen kann der bevorzugte Player gewählt werden (Spotify, YouTube Music, Deezer, Apple Music oder System-Standard).

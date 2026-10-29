@@ -150,6 +150,44 @@ fun TapperScreen(
                     verticalArrangement = Arrangement.spacedBy(4.dp),
                     contentPadding = PaddingValues(bottom = 8.dp)
                 ) {
+                    // --- RHYTHM PATTERN BANNER (IF DETECTED) ---
+                    state.detectedRhythm?.let { rhythm ->
+                        item {
+                            Surface(
+                                shape = RoundedCornerShape(10.dp),
+                                color = com.jonwal.dancetempo.ui.theme.AccentOrange.copy(alpha = 0.15f),
+                                border = androidx.compose.foundation.BorderStroke(1.dp, com.jonwal.dancetempo.ui.theme.AccentOrange.copy(alpha = 0.4f)),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 4.dp)
+                            ) {
+                                Row(
+                                    modifier = Modifier.padding(10.dp),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Text(
+                                        text = "🥁",
+                                        fontSize = 20.sp
+                                    )
+                                    Spacer(modifier = Modifier.width(8.dp))
+                                    Column {
+                                        Text(
+                                            text = "Rhythmus erkannt: ${rhythm.pattern.displayName}",
+                                            fontWeight = FontWeight.Bold,
+                                            fontSize = 13.sp,
+                                            color = com.jonwal.dancetempo.ui.theme.AccentOrange
+                                        )
+                                        Text(
+                                            text = rhythm.pattern.description,
+                                            fontSize = 11.sp,
+                                            color = MaterialTheme.colorScheme.onSurface
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     // --- SECTION A: PASSENDE TÄNZE ---
                     if (state.matches.isNotEmpty()) {
                         item {

@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Sort
+import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
@@ -36,6 +37,7 @@ fun LibraryScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
     var sortMenuExpanded by remember { mutableStateOf(false) }
+    var isMixerOpen by remember { mutableStateOf(false) }
 
     Column(
         modifier = modifier
@@ -73,6 +75,17 @@ fun LibraryScreen(
             }
 
             Row(verticalAlignment = Alignment.CenterVertically) {
+                // Tanz-Mixer Button
+                if (state.totalCount > 1) {
+                    IconButton(onClick = { isMixerOpen = true }) {
+                        Icon(
+                            imageVector = Icons.Default.AutoAwesome,
+                            contentDescription = "Tanz-Mixer",
+                            tint = AccentOrange
+                        )
+                    }
+                }
+
                 // Search Toggle
                 IconButton(onClick = { viewModel.toggleSearchActive() }) {
                     Icon(
@@ -222,6 +235,14 @@ fun LibraryScreen(
                 }
             }
         }
+    }
+
+    // Playlist Mixer BottomSheet
+    if (isMixerOpen) {
+        com.jonwal.dancetempo.ui.components.PlaylistMixerBottomSheet(
+            songs = state.songs,
+            onDismiss = { isMixerOpen = false }
+        )
     }
 
     // Song Detail / Delete BottomSheet
