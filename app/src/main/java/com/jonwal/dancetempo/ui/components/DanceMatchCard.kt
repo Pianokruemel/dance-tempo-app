@@ -14,7 +14,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.jonwal.dancetempo.model.DanceLevelMode
 import com.jonwal.dancetempo.model.DanceMatch
 import com.jonwal.dancetempo.model.TempoStatus
 import com.jonwal.dancetempo.ui.theme.*
