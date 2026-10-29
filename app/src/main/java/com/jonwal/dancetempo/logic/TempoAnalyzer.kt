@@ -63,8 +63,7 @@ object TempoAnalyzer {
     fun analyzeTempo(
         bpm: Int,
         meter: Int? = null,
-        mode: DanceLevelMode = DanceLevelMode.HOBBY,
-        dances: List<Dance> = DanceRepository.getDances(mode)
+        dances: List<Dance> = DanceRepository.allDances
     ): EvaluationResult {
         val matches = mutableListOf<DanceMatch>()
         val mismatches = mutableListOf<DanceMismatch>()
@@ -141,7 +140,7 @@ object TempoAnalyzer {
                     effectiveBpm - dance.idealBpmMax
                 } else null
 
-                val targetNorm = if (mode == DanceLevelMode.HOBBY) "Tanzschul-Ideal" else "WDSF-Turnier"
+                val targetNorm = "Tanzschul-Ideal"
 
                 if (!isMeterCompatible && meter != null) {
                     if (isInTempoRange) {
@@ -188,8 +187,8 @@ object TempoAnalyzer {
     fun findMatches(
         bpm: Int,
         meter: Int? = null,
-        mode: DanceLevelMode = DanceLevelMode.HOBBY
+        dances: List<Dance> = DanceRepository.allDances
     ): List<DanceMatch> {
-        return analyzeTempo(bpm, meter, mode).matches
+        return analyzeTempo(bpm, meter, dances).matches
     }
 }

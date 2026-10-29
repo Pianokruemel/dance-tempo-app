@@ -22,7 +22,6 @@ import com.jonwal.dancetempo.ui.theme.*
 @Composable
 fun DanceMatchCard(
     match: DanceMatch,
-    danceLevelMode: DanceLevelMode = DanceLevelMode.HOBBY,
     onSaveClicked: ((DanceMatch) -> Unit)? = null
 ) {
     Card(
@@ -83,7 +82,7 @@ fun DanceMatchCard(
                         border = androidx.compose.foundation.BorderStroke(1.dp, badgeColor.copy(alpha = 0.5f))
                     ) {
                         Text(
-                            text = match.status.getLabel(danceLevelMode),
+                            text = match.status.label,
                             modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
                             fontSize = 11.sp,
                             fontWeight = FontWeight.SemiBold,

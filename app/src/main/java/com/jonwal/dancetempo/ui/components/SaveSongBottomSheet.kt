@@ -347,12 +347,15 @@ fun SaveSongBottomSheet(
             )
             Spacer(modifier = Modifier.height(6.dp))
 
+            // Show matching dances + allow picking from all dances
+            val displayedDances = (matchingDances + com.jonwal.dancetempo.model.DanceRepository.allDances).distinctBy { it.id }
+
             FlowRow(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(6.dp),
                 verticalArrangement = Arrangement.spacedBy(6.dp)
             ) {
-                matchingDances.forEach { dance ->
+                displayedDances.forEach { dance ->
                     val isSelected = selectedDanceIds.contains(dance.id)
                     FilterChip(
                         selected = isSelected,

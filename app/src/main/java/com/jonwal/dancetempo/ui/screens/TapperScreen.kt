@@ -30,6 +30,7 @@ import com.jonwal.dancetempo.viewmodel.DanceTempoViewModel
 fun TapperScreen(
     viewModel: DanceTempoViewModel,
     onSaveDanceClicked: (DanceMatch) -> Unit,
+    onSaveMismatchClicked: ((DanceMismatch) -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
     val state by viewModel.uiState.collectAsState()
@@ -67,52 +68,22 @@ fun TapperScreen(
                 )
             }
 
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                // Hobby / Turnier Toggle Chip
-                val isHobby = state.danceLevelMode == com.jonwal.dancetempo.model.DanceLevelMode.HOBBY
-                FilterChip(
-                    selected = true,
-                    onClick = {
-                        val nextMode = if (isHobby) {
-                            com.jonwal.dancetempo.model.DanceLevelMode.TOURNAMENT
-                        } else {
-                            com.jonwal.dancetempo.model.DanceLevelMode.HOBBY
-                        }
-                        viewModel.setDanceLevelMode(nextMode)
-                    },
-                    label = {
-                        Text(
-                            text = if (isHobby) "Hobby" else "Turnier (WDSF)",
-                            fontSize = 11.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    },
-                    colors = FilterChipDefaults.filterChipColors(
-                        selectedContainerColor = if (isHobby) com.jonwal.dancetempo.ui.theme.PrimaryBlue else com.jonwal.dancetempo.ui.theme.StatusIdealGreen,
-                        selectedLabelColor = androidx.compose.ui.graphics.Color.White
-                    ),
-                    shape = RoundedCornerShape(20.dp)
-                )
-
-                Spacer(modifier = Modifier.width(6.dp))
-
-                FilterChip(
-                    selected = state.isBeat1ModeActive,
-                    onClick = { viewModel.toggleBeat1Mode() },
-                    label = {
-                        Text(
-                            text = if (state.isBeat1ModeActive) "1. Schlag an" else "1. Schlag",
-                            fontSize = 11.sp,
-                            fontWeight = FontWeight.Medium
-                        )
-                    },
-                    colors = FilterChipDefaults.filterChipColors(
-                        selectedContainerColor = AccentOrange,
-                        selectedLabelColor = MaterialTheme.colorScheme.onPrimary
-                    ),
-                    shape = RoundedCornerShape(20.dp)
-                )
-            }
+            FilterChip(
+                selected = state.isBeat1ModeActive,
+                onClick = { viewModel.toggleBeat1Mode() },
+                label = {
+                    Text(
+                        text = if (state.isBeat1ModeActive) "1. Schlag aktiv" else "1. Schlag Feld",
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                },
+                colors = FilterChipDefaults.filterChipColors(
+                    selectedContainerColor = AccentOrange,
+                    selectedLabelColor = MaterialTheme.colorScheme.onPrimary
+                ),
+                shape = RoundedCornerShape(20.dp)
+            )
         }
 
         // --- 2. STATS HEADER: BPM, Taktart, TPM ---
@@ -195,7 +166,6 @@ fun TapperScreen(
                         items(items = state.matches, key = { "match_${it.dance.id}" }) { match ->
                             DanceMatchCard(
                                 match = match,
-                                danceLevelMode = state.danceLevelMode,
                                 onSaveClicked = onSaveDanceClicked
                             )
                         }
@@ -209,7 +179,7 @@ fun TapperScreen(
                                     .padding(vertical = 6.dp)
                             ) {
                                 Text(
-                                    text = "Kein Turniertanz passt exakt auf ${state.currentBpm} BPM.",
+                                    text = "Kein Tanz passt exakt auf ${state.currentBpm} BPM.",
                                     modifier = Modifier.padding(10.dp),
                                     fontSize = 12.sp,
                                     textAlign = TextAlign.Center,
@@ -233,7 +203,10 @@ fun TapperScreen(
                         }
 
                         items(items = state.mismatches, key = { "mismatch_${it.dance.id}" }) { mismatch ->
-                            DanceMismatchCard(mismatch = mismatch)
+                            DanceMismatchCard(
+                                mismatch = mismatch,
+                                onSaveClicked = onSaveMismatchClicked
+                            )
                         }
                     }
                 }
@@ -287,7 +260,7 @@ fun TapperScreen(
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "DanceTempo ist freie Open-Source-Software unter der GNU General Public License v3 (GPLv3).",
+                        text = "DanceTempo ist freie Open-Source-Software unter der GNU General Public License v3 (GPLv3). Ausgelegt auf Tanzschule, Welttanzprogramm (WTP) und Gesellschaftstanz.",
                         fontSize = 12.sp,
                         lineHeight = 16.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant

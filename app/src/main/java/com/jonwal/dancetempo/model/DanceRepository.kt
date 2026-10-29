@@ -3,10 +3,10 @@ package com.jonwal.dancetempo.model
 object DanceRepository {
 
     /**
-     * Dancers in dance schools (ADTV / Welttanzprogramm / Social Dancing)
-     * Quickstep, Jive, Wiener Walzer are adapted for pop music and comfortable dancing.
+     * Welttanzprogramm (ADTV / WTP), Social Dancing & Tanzschule.
+     * Ausgelegt auf musikalisches Tanzen zu moderner Pop-, Rock- und Swingmusik.
      */
-    val hobbyDances: List<Dance> = listOf(
+    val allDances: List<Dance> = listOf(
         Dance(
             id = "quickstep",
             name = "Quickstep / schneller Foxtrott",
@@ -62,7 +62,7 @@ object DanceRepository {
         ),
         Dance(
             id = "tango",
-            name = "Tango",
+            name = "Tango (Ballroom)",
             category = DanceCategory.STANDARD,
             meter = 2,
             altMeter = 4,
@@ -74,7 +74,7 @@ object DanceRepository {
             idealBpmMax = 128,
             halfBpmMin = 60,
             halfBpmMax = 64,
-            rhythmHint = "Staccato-Charakter, keine Hüftbewegung. Teilt sich das Tempo mit Cha-Cha-Cha und Discofox."
+            rhythmHint = "Europäischer/Internationaler Standard-Tango mit Staccato-Schritten ohne Hüftbewegung. Teilt sich das Tempo mit Cha-Cha-Cha und Discofox."
         ),
         Dance(
             id = "rumba",
@@ -100,7 +100,7 @@ object DanceRepository {
             bpmScaleMax = 176,
             idealBpmMin = 140,
             idealBpmMax = 164,
-            rhythmHint = "Im Hobbybereich deutlich entspannter als im Turnier (ab 164 BPM sehr sportlich)."
+            rhythmHint = "Im Hobbybereich deutlich entspannter als im Turniersport (ab 164 BPM sehr sportlich)."
         ),
         Dance(
             id = "slow_waltz",
@@ -181,180 +181,4 @@ object DanceRepository {
             rhythmHint = "Elastischer Groove zu R&B, Pop oder Blues."
         )
     )
-
-    /**
-     * Strict World DanceSport Federation (WDSF Rule D.2) competition tempi.
-     */
-    val tournamentDances: List<Dance> = listOf(
-        Dance(
-            id = "quickstep",
-            name = "Quickstep (WDSF)",
-            category = DanceCategory.STANDARD,
-            meter = 4,
-            tpmIdealMin = 50,
-            tpmIdealMax = 52,
-            bpmScaleMin = 180,
-            bpmScaleMax = 220,
-            idealBpmMin = 200,
-            idealBpmMax = 208,
-            canHalfTap = true,
-            rhythmHint = "Offizielles WDSF Turniertempo: 50–52 TPM = 200–208 BPM (Halbtakt 100–104 BPM)."
-        ),
-        Dance(
-            id = "slow_waltz",
-            name = "Langsamer Walzer",
-            category = DanceCategory.STANDARD,
-            meter = 3,
-            tpmIdealMin = 28,
-            tpmIdealMax = 30,
-            bpmScaleMin = 78,
-            bpmScaleMax = 96,
-            idealBpmMin = 84,
-            idealBpmMax = 90,
-            rhythmHint = null
-        ),
-        Dance(
-            id = "viennese_waltz",
-            name = "Wiener Walzer",
-            category = DanceCategory.STANDARD,
-            meter = 3,
-            tpmIdealMin = 58,
-            tpmIdealMax = 60,
-            bpmScaleMin = 160,
-            bpmScaleMax = 195,
-            idealBpmMin = 174,
-            idealBpmMax = 180,
-            rhythmHint = null
-        ),
-        Dance(
-            id = "slow_foxtrot",
-            name = "Slowfox",
-            category = DanceCategory.STANDARD,
-            meter = 4,
-            tpmIdealMin = 28,
-            tpmIdealMax = 30,
-            bpmScaleMin = 104,
-            bpmScaleMax = 126,
-            idealBpmMin = 112,
-            idealBpmMax = 120,
-            rhythmHint = null
-        ),
-        Dance(
-            id = "tango",
-            name = "Tango (International)",
-            category = DanceCategory.STANDARD,
-            meter = 2,
-            altMeter = 4,
-            tpmIdealMin = 31,
-            tpmIdealMax = 33,
-            bpmScaleMin = 114,
-            bpmScaleMax = 140,
-            idealBpmMin = 124,
-            idealBpmMax = 132,
-            halfBpmMin = 62,
-            halfBpmMax = 66,
-            rhythmHint = null
-        ),
-        Dance(
-            id = "samba",
-            name = "Samba",
-            category = DanceCategory.LATIN,
-            meter = 2,
-            tpmIdealMin = 50,
-            tpmIdealMax = 52,
-            bpmScaleMin = 92,
-            bpmScaleMax = 112,
-            idealBpmMin = 100,
-            idealBpmMax = 104,
-            rhythmHint = null
-        ),
-        Dance(
-            id = "cha_cha",
-            name = "Cha-Cha-Cha",
-            category = DanceCategory.LATIN,
-            meter = 4,
-            tpmIdealMin = 30,
-            tpmIdealMax = 32,
-            bpmScaleMin = 110,
-            bpmScaleMax = 134,
-            idealBpmMin = 120,
-            idealBpmMax = 128,
-            rhythmHint = null
-        ),
-        Dance(
-            id = "rumba",
-            name = "Rumba",
-            category = DanceCategory.LATIN,
-            meter = 4,
-            tpmIdealMin = 25,
-            tpmIdealMax = 27,
-            bpmScaleMin = 94,
-            bpmScaleMax = 114,
-            idealBpmMin = 100,
-            idealBpmMax = 108,
-            rhythmHint = null
-        ),
-        Dance(
-            id = "paso_doble",
-            name = "Paso Doble",
-            category = DanceCategory.LATIN,
-            meter = 2,
-            tpmIdealMin = 60,
-            tpmIdealMax = 62,
-            bpmScaleMin = 112,
-            bpmScaleMax = 130,
-            idealBpmMin = 120,
-            idealBpmMax = 124,
-            rhythmHint = null
-        ),
-        Dance(
-            id = "jive",
-            name = "Jive",
-            category = DanceCategory.LATIN,
-            meter = 4,
-            tpmIdealMin = 42,
-            tpmIdealMax = 44,
-            bpmScaleMin = 154,
-            bpmScaleMax = 188,
-            idealBpmMin = 168,
-            idealBpmMax = 176,
-            rhythmHint = null
-        ),
-        Dance(
-            id = "discofox",
-            name = "Discofox",
-            category = DanceCategory.SOCIAL,
-            meter = 4,
-            tpmIdealMin = 31,
-            tpmIdealMax = 33,
-            bpmScaleMin = 112,
-            bpmScaleMax = 144,
-            idealBpmMin = 124,
-            idealBpmMax = 132,
-            rhythmHint = null
-        ),
-        Dance(
-            id = "west_coast_swing",
-            name = "West Coast Swing",
-            category = DanceCategory.SOCIAL,
-            meter = 4,
-            tpmIdealMin = 24,
-            tpmIdealMax = 28,
-            bpmScaleMin = 76,
-            bpmScaleMax = 124,
-            idealBpmMin = 85,
-            idealBpmMax = 115,
-            rhythmHint = null
-        )
-    )
-
-    fun getDances(mode: DanceLevelMode): List<Dance> = when (mode) {
-        DanceLevelMode.HOBBY -> hobbyDances
-        DanceLevelMode.TOURNAMENT -> tournamentDances
-    }
-
-    /**
-     * All unique dances across both catalogs for library filter chips and lookup.
-     */
-    val allDances: List<Dance> = (hobbyDances + tournamentDances).distinctBy { it.id }
 }

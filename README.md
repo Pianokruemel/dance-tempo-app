@@ -7,52 +7,46 @@ Eine moderne, native Android-App zur präzisen Rhythmus- und Tempoanalyse sowie 
 
 ---
 
-## 🎯 Zwei Zielgruppen: Hobby vs. Turnier
+## 🎯 Zielgruppe & Tanzschulfokus
 
-Die App schlägt eine Brücke zwischen Gesellschaftstanz zu modernen Pop-Songs und dem leistungsorientierten Turniersport:
-
-1. **Hobby / Tanzschule (Standardmodus):**
-   * Orientiert am **Welttanzprogramm (WTP / ADTV)** und Social Dancing.
-   * Erkennt und toleriert tanzschulgerechte Tempi moderner Pop-, Rock- und Swingmusik (z. B. entspannter Quickstep/Foxtrott bei 110–135 BPM, gemütlicher Wiener Walzer ab 150 BPM, Jive ab 135 BPM).
-2. **Turnier (WDSF / DTV):**
-   * Strikte Anwendung der Wettkampf-Vorgaben der **World DanceSport Federation (WDSF Rule D.2)**.
-   * Wettkampf-Korridore (z. B. Quickstep strikt 200–208 BPM bzw. Halbtakt 100–104 BPM).
-
-Ein Klick auf den Schalter `[Hobby]` / `[Turnier]` in der Kopfzeile schaltet die gesamte Auswertung und Benennung nahtlos um.
+Die App ist zu 100 % auf **Hobbytanz, Tanzschulen (ADTV / Welttanzprogramm WTP) und Social Dancing** ausgerichtet:
+* Erkennt und toleriert tanzschulgerechte Tempi moderner Pop-, Rock- und Swingmusik (z. B. entspannter Quickstep/Foxtrott bei 110–135 BPM, gemütlicher Wiener Walzer ab 150 BPM, Jive ab 135 BPM).
+* **Ballroom-Tango vs. Tango Argentino:** Die App fokussiert sich auf den klassischen europäischen / internationalen Standard-Tango (`Tango (Ballroom)`). Der argentinische Tango (Tango de Salón / Milonga / Tango Vals) folgt einer grundlegend anderen Improvisations- und Tempokultur und wird daher bewusst separat gehalten.
+* **Fokussiertes Interface:** Auf komplexe Turniersport-Regelwerke (WDSF) wurde zugunsten einer schnellen, übersichtlichen und alltagstauglichen Bedienung verzichtet.
 
 ---
 
-## 🎵 Referenztabelle der Tempi
+## 🎵 Referenztabelle der Tempi (Tanzschule & Welttanzprogramm)
 
-| Tanz | Taktart | Hobby-Ideal (BPM) | Hobby-Toleranz (BPM) | WDSF Turnier (TPM) | WDSF Turnier (BPM) |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Quickstep** | 4/4 | **116–126** | 98–142 *(Pop / Swing)* | 50–52 | **200–208** *(Halbtakt 100–104)* |
-| **Foxtrott (Social)** | 4/4 | **112–128** | 104–138 *(WTP Allrounder)* | – *(nur Slowfox/Quickstep)* | – |
-| **Langsamer Walzer** | 3/4 | **84–90** | 78–94 | 28–30 | **84–90** |
-| **Wiener Walzer** | 3/4 | **150–170** | 135–185 *(Social Einstieg)* | 58–60 | **174–180** |
-| **Tango** | 2/4 (4/4) | **120–128** | 116–134 | 31–33 | **124–132** *(Viertel: 62–66)* |
-| **Slowfox** | 4/4 | **112–118** | 106–122 | 28–30 | **112–120** |
-| **Cha-Cha-Cha** | 4/4 | **118–126** | 112–132 | 30–32 | **120–128** |
-| **Rumba** | 4/4 | **98–106** | 92–112 | 25–27 | **100–108** |
-| **Samba** | 2/4 | **96–104** | 90–110 | 50–52 | **100–104** |
-| **Jive** | 4/4 | **140–164** | 128–176 *(tanzschulgerecht)* | 42–44 | **168–176** |
-| **Paso Doble** | 2/4 | **118–124** | 112–126 | 60–62 | **120–124** |
-| **Discofox** | 4/4 | **120–132** | 112–142 | – | **124–132** |
-| **West Coast Swing** | 4/4 | **85–115** | 76–124 | – | **85–115** |
+| Tanz | Taktart | Tanzschul-Ideal (BPM) | Toleranzbereich (BPM) | Charakteristik |
+| :--- | :--- | :--- | :--- | :--- |
+| **Quickstep** | 4/4 | **116–126** | 98–142 | Spritzig zu Pop- & Swingmusik mit Chassés & Locksteps |
+| **Foxtrott (Social)** | 4/4 | **112–128** | 104–138 | Der Allrounder im Welttanzprogramm (Slow-Slow-Quick-Quick) |
+| **Langsamer Walzer** | 3/4 | **84–90** | 78–94 | Weicher, fließender 3/4-Schwungtakt |
+| **Wiener Walzer** | 3/4 | **150–170** | 135–185 | Tanzschulgerechtes Pendeln ab 150 BPM bis zum flotten Walzer |
+| **Tango (Ballroom)** | 2/4 (4/4) | **120–128** | 116–134 | Europäischer Standard-Tango, Staccato-Schritte ohne Hüftaktion |
+| **Slowfox** | 4/4 | **112–118** | 106–122 | Eleganter, fließender Slow-Quick-Quick Swing |
+| **Cha-Cha-Cha** | 4/4 | **118–126** | 112–132 | Kubanischer Rhythmus mit synkopischem Chassé auf 4-und-1 |
+| **Rumba** | 4/4 | **98–106** | 92–112 | Romantischer, ruhiger Latin-Groove mit Schrittpause auf 1 |
+| **Samba** | 2/4 | **96–104** | 90–110 | Federnder Bounce-Rhythmus (1-a-2) |
+| **Jive** | 4/4 | **140–164** | 128–176 | Tanzschulgerecht entspannt bis spritzig-sportlich |
+| **Paso Doble** | 2/4 | **118–124** | 112–126 | Strenger spanischer Marsch- und Flamenco-Charakter |
+| **Discofox** | 4/4 | **120–132** | 112–142 | Durchgehender 4-on-the-Floor Pop- & Partybeat (1-2-Tap) |
+| **West Coast Swing** | 4/4 | **85–115** | 76–124 | Elastischer Slot-Dance zu R&B, Blues und moderner Popmusik |
 
 ---
 
 ## 📚 Quellenverzeichnis
 
-Die hinterlegten Normen und Toleranzbereiche basieren auf den Regelwerken der führenden Tanzsportverbände:
+Die hinterlegten Normen und Toleranzbereiche basieren auf den Richtlinien und Erfahrungswerten des Gesellschaftstanzes:
 
-1. **WDSF Competition Rules (Turniersport):**
-   * World DanceSport Federation (WDSF), *Competition Rules – Rule D.2 (Couples)*: [WDSF Rules Portal](https://www.worlddancesport.org/Rule/Competition/General) · [Offizielles PDF (S. 31)](https://cdnb.worlddancesport.org/legacy-docs/competition/rules%20and%20bidding/2013/Competition%20Rules.pdf)
-2. **Deutscher Tanzsportverband (DTV):**
-   * Turnier- und Sportordnung (TSO Abschnitt F): [DTV Ordnungen & Regelwerke](https://www.tanzsport.de/de/sportwelt/leistungssport/ordnungen)
-3. **Allgemeiner Deutscher Tanzlehrerverband (ADTV) & Welttanzprogramm (WTP):**
-   * Welttanzprogramm Richtlinien für Gesellschaftstanz: [tanzen.de (ADTV)](https://www.tanzen.de/)
+1. **Allgemeiner Deutscher Tanzlehrerverband (ADTV) & Welttanzprogramm (WTP):**
+   * Richtlinien zum Welttanzprogramm für Gesellschaftstanz: [tanzen.de (ADTV)](https://www.tanzen.de/)
    * Tanzschul-Übersicht: [Tanzschule Waal – Tempo der Tänze im Welttanzprogramm](https://www.tanzen-waal.de/post/tempo-der-t%C3%A4nze-im-welttanzprogramm)
+2. **Deutscher Tanzsportverband (DTV):**
+   * Breitensport- und Tanzsportordnung: [DTV Ordnungen](https://www.tanzsport.de/de/sportwelt/leistungssport/ordnungen)
+3. **World DanceSport Federation (WDSF):**
+   * Grundmetren und Taktsysteme der Standard- und Lateintänze: [WDSF Rules Portal](https://www.worlddancesport.org/Rule/Competition/General)
 
 ---
 

@@ -88,6 +88,7 @@ fun MainAppScaffold(
 ) {
     var currentTab by remember { mutableStateOf(AppTab.TAPPER) }
     var matchToSave by remember { mutableStateOf<DanceMatch?>(null) }
+    var mismatchToSave by remember { mutableStateOf<com.jonwal.dancetempo.model.DanceMismatch?>(null) }
     val tempoState by tempoViewModel.uiState.collectAsState()
 
     Scaffold(
@@ -136,7 +137,8 @@ fun MainAppScaffold(
                 AppTab.TAPPER -> {
                     TapperScreen(
                         viewModel = tempoViewModel,
-                        onSaveDanceClicked = { match -> matchToSave = match }
+                        onSaveDanceClicked = { match -> matchToSave = match },
+                        onSaveMismatchClicked = { mismatch -> mismatchToSave = mismatch }
                     )
                 }
                 AppTab.LIBRARY -> {
@@ -149,20 +151,25 @@ fun MainAppScaffold(
     }
 
     // Save Song BottomSheet when user clicks Bookmark icon on a dance card
-    matchToSave?.let { match ->
-        val currentBpm = tempoState.currentBpm ?: match.effectiveBpm
-        val currentMeter = tempoState.detectedMeter ?: match.dance.meter
+    val activeSaveDance = matchToSave?.dance ?: mismatchToSave?.dance
+    if (activeSaveDance != null) {
+        val currentBpm = tempoState.currentBpm ?: matchToSave?.effectiveBpm ?: activeSaveDance.idealBpmMin
+        val currentMeter = tempoState.detectedMeter ?: activeSaveDance.meter
         val allMatchingDances = tempoState.matches.map { it.dance }.distinctBy { it.id }
 
         SaveSongBottomSheet(
             bpm = currentBpm,
             meter = currentMeter,
-            primaryDance = match.dance,
-            matchingDances = if (allMatchingDances.isNotEmpty()) allMatchingDances else listOf(match.dance),
-            onDismiss = { matchToSave = null },
+            primaryDance = activeSaveDance,
+            matchingDances = if (allMatchingDances.isNotEmpty()) allMatchingDances else listOf(activeSaveDance),
+            onDismiss = {
+                matchToSave = null
+                mismatchToSave = null
+            },
             onSaveSong = { title, artist, bpm, meter, notes, url, dances ->
                 onSaveSongToRepo(title, artist, bpm, meter, notes, url, dances)
                 matchToSave = null
+                mismatchToSave = null
             }
         )
     }

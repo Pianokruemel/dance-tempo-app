@@ -3,11 +3,9 @@ package com.jonwal.dancetempo.ui.components
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.BookmarkAdd
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,7 +16,10 @@ import androidx.compose.ui.unit.sp
 import com.jonwal.dancetempo.model.DanceMismatch
 
 @Composable
-fun DanceMismatchCard(mismatch: DanceMismatch) {
+fun DanceMismatchCard(
+    mismatch: DanceMismatch,
+    onSaveClicked: ((DanceMismatch) -> Unit)? = null
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -61,25 +62,42 @@ fun DanceMismatchCard(mismatch: DanceMismatch) {
                     }
                 }
 
-                // Tag indicator
-                val (tagLabel, tagColor) = when {
-                    mismatch.isMeterMismatch -> "Takt unpassend" to Color(0xFFF43F5E)
-                    mismatch.isTooSlow -> "Zu langsam" to Color(0xFF60A5FA)
-                    else -> "Zu schnell" to Color(0xFFFACC15)
-                }
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    // Tag indicator
+                    val (tagLabel, tagColor) = when {
+                        mismatch.isMeterMismatch -> "Takt unpassend" to Color(0xFFF43F5E)
+                        mismatch.isTooSlow -> "Zu langsam" to Color(0xFF60A5FA)
+                        else -> "Zu schnell" to Color(0xFFFACC15)
+                    }
 
-                Surface(
-                    shape = RoundedCornerShape(10.dp),
-                    color = tagColor.copy(alpha = 0.15f),
-                    border = BorderStroke(1.dp, tagColor.copy(alpha = 0.35f))
-                ) {
-                    Text(
-                        text = tagLabel,
-                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
-                        fontSize = 10.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = tagColor
-                    )
+                    Surface(
+                        shape = RoundedCornerShape(10.dp),
+                        color = tagColor.copy(alpha = 0.15f),
+                        border = BorderStroke(1.dp, tagColor.copy(alpha = 0.35f))
+                    ) {
+                        Text(
+                            text = tagLabel,
+                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+                            fontSize = 10.sp,
+                            fontWeight = FontWeight.Medium,
+                            color = tagColor
+                        )
+                    }
+
+                    if (onSaveClicked != null) {
+                        Spacer(modifier = Modifier.width(2.dp))
+                        IconButton(
+                            onClick = { onSaveClicked(mismatch) },
+                            modifier = Modifier.size(28.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.BookmarkAdd,
+                                contentDescription = "Diesen Tanz trotzdem speichern",
+                                tint = com.jonwal.dancetempo.ui.theme.AccentOrange.copy(alpha = 0.85f),
+                                modifier = Modifier.size(17.dp)
+                            )
+                        }
+                    }
                 }
             }
 

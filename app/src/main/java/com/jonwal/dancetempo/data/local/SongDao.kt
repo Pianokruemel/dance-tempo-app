@@ -19,9 +19,17 @@ interface SongDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertSongDanceCrossRefs(crossRefs: List<SongDanceCrossRef>)
 
+    @Query("SELECT * FROM songs WHERE LOWER(title) = LOWER(:title) AND LOWER(artist) = LOWER(:artist) LIMIT 1")
+    suspend fun findSongByTitleAndArtist(title: String, artist: String): SongWithDances?
+
     @Transaction
     suspend fun insertSongWithDances(song: SongEntity, danceIds: List<String>): Long {
-        val songId = insertSong(song)
+        val existing = findSongByTitleAndArtist(song.title.trim(), song.artist.trim())
+        val songId = if (existing != null) {
+            existing.song.id
+        } else {
+            insertSong(song)
+        }
         val refs = danceIds.map { SongDanceCrossRef(songId = songId, danceId = it) }
         insertSongDanceCrossRefs(refs)
         return songId

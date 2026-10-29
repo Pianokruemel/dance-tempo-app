@@ -2,7 +2,6 @@ package com.jonwal.dancetempo.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.jonwal.dancetempo.logic.TempoAnalyzer
-import com.jonwal.dancetempo.model.DanceLevelMode
 import com.jonwal.dancetempo.model.DanceMatch
 import com.jonwal.dancetempo.model.DanceMismatch
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,7 +11,6 @@ import kotlinx.coroutines.flow.update
 
 data class DanceTempoUiState(
     val isBeat1ModeActive: Boolean = false,
-    val danceLevelMode: DanceLevelMode = DanceLevelMode.HOBBY, // Default to Hobby
     val currentBpm: Int? = null,
     val detectedMeter: Int? = null, // e.g. 2, 3, 4
     val currentTpm: Int? = null,
@@ -33,11 +31,6 @@ class DanceTempoViewModel : ViewModel() {
     fun toggleBeat1Mode() {
         _uiState.update { it.copy(isBeat1ModeActive = !it.isBeat1ModeActive) }
         reset()
-    }
-
-    fun setDanceLevelMode(mode: DanceLevelMode) {
-        _uiState.update { it.copy(danceLevelMode = mode) }
-        recomputeAnalysis()
     }
 
     fun onUserTap(isBeat1: Boolean) {
@@ -100,8 +93,7 @@ class DanceTempoViewModel : ViewModel() {
         val evaluation = if (bpm != null) {
             TempoAnalyzer.analyzeTempo(
                 bpm = bpm,
-                meter = meter,
-                mode = _uiState.value.danceLevelMode
+                meter = meter
             )
         } else null
 

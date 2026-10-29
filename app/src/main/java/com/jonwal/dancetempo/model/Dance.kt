@@ -6,20 +6,10 @@ enum class DanceCategory(val displayName: String) {
     SOCIAL("Social")
 }
 
-enum class DanceLevelMode(val displayName: String) {
-    HOBBY("Hobby"),
-    TOURNAMENT("Turnier")
-}
-
-enum class TempoStatus(val hobbyLabel: String, val tournamentLabel: String) {
-    SLOW("Gemütlich / Einsteiger", "Langsamer / Gemütlich"),
-    IDEAL("Tanzschul-Ideal", "Turniertempo (Ideal)"),
-    FAST("Spritzig / Flott", "Schnell / Sportlich");
-
-    fun getLabel(mode: DanceLevelMode): String = when (mode) {
-        DanceLevelMode.HOBBY -> hobbyLabel
-        DanceLevelMode.TOURNAMENT -> tournamentLabel
-    }
+enum class TempoStatus(val label: String) {
+    SLOW("Gemütlich / Einsteiger"),
+    IDEAL("Tanzschul-Ideal"),
+    FAST("Spritzig / Flott")
 }
 
 data class Dance(
