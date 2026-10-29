@@ -1,0 +1,1 @@
+# DanceTempo Proguard rules
