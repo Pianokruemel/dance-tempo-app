@@ -57,7 +57,7 @@ Die hinterlegten Normen und Toleranzbereiche basieren auf den Richtlinien und Er
 * **1.-Schlag-Downbeat-Erkennung:**
   * Bei zugeschaltetem Toggle teilt sich der Tap-Bereich: Links das orangefarbene Feld für Schlag 1 (Downbeat), rechts das blaue Feld für die Folgeschläge (2, 3, 4...).
   * Erkennt automatisch das Metrum (z. B. `3/4` Walzer vs. `4/4` Quickstep/Cha-Cha-Cha).
-* **Rhythmus-Mustererkennung:** Tappst du anstelle sturer Viertel die rhythmischen Schrittmuster (z. B. *Slow-Slow-Quick-Quick* für Foxtrott, *Slow-Quick-Quick* für Slowfox, *1-a-2* für Samba Bounce oder *2-3-4-&-1* für Cha-Cha-Cha), erkennt die App das Muster automatisch per Intervallanalyse.
+* **Rhythmik-Karten & Musikcharakter:** Kompakte Hilfestellungen direkt auf jeder Tanzkarte beschreiben den musikalischen Charakter (z. B. Habanera-Marsch im Tango, 4-on-the-Floor im Discofox, federnder Samba-Bounce) zur sicheren Tanzwahl.
 * **Visuelle Tempo-Ampel:**
   * 🟢 **Grün:** Tanzschul-Ideal
   * 🔵 **Blau:** Gemütlich / Einsteiger

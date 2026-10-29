@@ -34,9 +34,9 @@ Diese Roadmap dokumentiert die strategischen Entscheidungen und Meilensteine fü
 ---
 
 ## 📌 Phase 4: Fortgeschrittene Tanz-Features & Automation
-- [x] **#9 Rhythmus-Mustererkennung (Tap-Pattern-Matching):**
-  - Erkennung von Tanzrhythmen ohne Mikrofon über getappte Zeitverhältnisse (z. B. *Slow-Slow-Quick-Quick* für Foxtrott, *Slow-Quick-Quick* für Slowfox, *1-a-2* für Samba Bounce, *2-3-4-&-1* für Cha-Cha-Cha).
-  - Algorithmus: Normalisiertes MSE-Intervallverhältnis mit dynamischer Skalierung.
+- [x] **#9 Rhythmus-Charakteristik & Rhythmik-Karten:**
+  - Präzise, kompakte Hinweise zum Musikcharakter, Groove und tänzerischen Besonderheiten direkt auf jeder Tanzkarte.
+  - Verzicht auf fehleranfälliges Synkopen-Klopfen zugunsten eines ungestörten, verlässlichen BPM-Tappers.
 - [x] **#4 Musik-Mixer & Playlist-Generator:**
   - Automatische Generierung von Tanzabend-Playlists nach Kriterien (Dauer z. B. 15/30/60 Min, Tanzstile, Schutz vor zwei schnellen Tänzen hintereinander).
   - Direktes Abspielen der Mix-Songs in der konfigurierten Standard-Streaming-App.

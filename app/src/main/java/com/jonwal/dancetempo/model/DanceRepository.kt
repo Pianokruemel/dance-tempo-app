@@ -19,7 +19,7 @@ object DanceRepository {
             idealBpmMin = 116,
             idealBpmMax = 126,
             canHalfTap = true,
-            rhythmHint = "Tanzschul-Quickstep & schneller Foxtrott zu Pop- und Swingmusik mit Chassés, Locksteps und Quarter Turns."
+            rhythmHint = "Spritziger Pop- oder Swing-Groove. Lebhaft und schnell mit raumgreifenden Chassés und Locksteps."
         ),
         Dance(
             id = "foxtrott",
@@ -32,7 +32,7 @@ object DanceRepository {
             bpmScaleMax = 138,
             idealBpmMin = 112,
             idealBpmMax = 128,
-            rhythmHint = "Der klassische Allrounder im Welttanzprogramm (Slow-Slow-Quick-Quick) für fast jede 4/4 Pop- und Swingmusik."
+            rhythmHint = "Entspannter 4/4-Beat (Pop, Jazz, Schlager). Universeller Klassiker mit unkompliziertem Slow-Slow-Quick-Quick-Gehrhythmus."
         ),
         Dance(
             id = "discofox",
@@ -45,7 +45,7 @@ object DanceRepository {
             bpmScaleMax = 142,
             idealBpmMin = 120,
             idealBpmMax = 132,
-            rhythmHint = "Gleichmäßiger 4-on-the-Floor Pop- & Partybeat (1-2-Tap)."
+            rhythmHint = "Gleichmäßiger 'Four-on-the-Floor'-Partybeat (Pop, Schlager, Dance). Flotte Dreh- und Wickelfiguren im 1-2-Tap-Schrittmuster."
         ),
         Dance(
             id = "cha_cha",
@@ -58,7 +58,7 @@ object DanceRepository {
             bpmScaleMax = 132,
             idealBpmMin = 118,
             idealBpmMax = 126,
-            rhythmHint = "Synkopisches Chassé auf 4-und-1 mit kubanischer Hüftbewegung."
+            rhythmHint = "Lebhafter Latin-Pop mit spürbarem Beat auf 4-und-1. Freche Hüftaktion mit schnellem Chassé (Cha-Cha-Cha)."
         ),
         Dance(
             id = "tango",
@@ -74,7 +74,7 @@ object DanceRepository {
             idealBpmMax = 128,
             halfBpmMin = 60,
             halfBpmMax = 64,
-            rhythmHint = "Europäischer/Internationaler Standard-Tango mit Staccato-Schritten ohne Hüftbewegung. Teilt sich das Tempo mit Cha-Cha-Cha und Discofox."
+            rhythmHint = "Dramatischer Staccato-Marsch (Habanera-Akzent). Schleichende Schritte mit scharfen Kopfwendungen und klaren Pausen; keine Hüftbewegung."
         ),
         Dance(
             id = "rumba",
@@ -87,7 +87,7 @@ object DanceRepository {
             bpmScaleMax = 112,
             idealBpmMin = 98,
             idealBpmMax = 106,
-            rhythmHint = "Ruhiger, romantischer Latin-Groove mit Schrittpause auf Schlag 1."
+            rhythmHint = "Ruhiger, romantischer Latin-Klang. Gefühlvolle Hüftbewegung mit Schrittpause auf Schlag 1 und Schritten auf 2, 3, 4-1."
         ),
         Dance(
             id = "jive",
@@ -100,7 +100,7 @@ object DanceRepository {
             bpmScaleMax = 176,
             idealBpmMin = 140,
             idealBpmMax = 164,
-            rhythmHint = "Im Hobbybereich deutlich entspannter als im Turniersport (ab 164 BPM sehr sportlich)."
+            rhythmHint = "Energievoller Rock'n'Roll oder Upbeat-Pop (Betonung auf 2 & 4). Spritzig mit federnder Knieaktion, Chassés und Kicks."
         ),
         Dance(
             id = "slow_waltz",
@@ -113,7 +113,7 @@ object DanceRepository {
             bpmScaleMax = 94,
             idealBpmMin = 84,
             idealBpmMax = 90,
-            rhythmHint = null
+            rhythmHint = "Schwebender, weicher 3/4-Takt (Akustik, Balladen). Elegante Schwünge mit sanftem Heben und Senken (Rise & Fall)."
         ),
         Dance(
             id = "viennese_waltz",
@@ -126,7 +126,7 @@ object DanceRepository {
             bpmScaleMax = 185,
             idealBpmMin = 150,
             idealBpmMax = 170,
-            rhythmHint = "Im Tanzschulbereich wird oft bei 150–165 BPM gemütlich gependelt; Turniertempo (180 BPM) ist sehr fordernd."
+            rhythmHint = "Schwungvoller 3/4-Drehtakt mit deutlicher Betonung auf Schlag 1. Fließende Rechts-/Linksdrehungen oder raumgreifendes Pendeln."
         ),
         Dance(
             id = "samba",
@@ -139,7 +139,7 @@ object DanceRepository {
             bpmScaleMax = 110,
             idealBpmMin = 96,
             idealBpmMax = 104,
-            rhythmHint = "Federnder Bounce-Rhythmus (1-a-2)."
+            rhythmHint = "Pulsierende Latin-Percussion mit Akzent auf Schlag 2. Unverkennbar durch die federnde Knieaktion (Samba-Bounce auf 1-a-2)."
         ),
         Dance(
             id = "slow_foxtrot",
@@ -152,7 +152,7 @@ object DanceRepository {
             bpmScaleMax = 122,
             idealBpmMin = 112,
             idealBpmMax = 118,
-            rhythmHint = "Eleganter, anspruchsvoller Swing mit fließenden Schritten."
+            rhythmHint = "Edler Big-Band- und Swing-Klang. Weite, fließende Gehwellen ohne sichtbare Stopps im Slow-Quick-Quick-Rhythmus."
         ),
         Dance(
             id = "paso_doble",
@@ -165,7 +165,7 @@ object DanceRepository {
             bpmScaleMax = 126,
             idealBpmMin = 118,
             idealBpmMax = 124,
-            rhythmHint = "Spanischer Marsch- und Flamenco-Charakter."
+            rhythmHint = "Feuriger spanischer Marsch im Stierkampf-Charakter. Aufrechte, stolze Haltung mit kraftvollen Marschschritten."
         ),
         Dance(
             id = "west_coast_swing",
@@ -178,7 +178,7 @@ object DanceRepository {
             bpmScaleMax = 124,
             idealBpmMin = 85,
             idealBpmMax = 115,
-            rhythmHint = "Elastischer Groove zu R&B, Pop oder Blues."
+            rhythmHint = "Elastischer Groove zu R&B, Pop oder Blues. Getanzt entlang einer Linie (Slot) mit Raum für lockere Improvisation."
         )
     )
 }

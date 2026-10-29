@@ -1,8 +1,6 @@
 package com.jonwal.dancetempo.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.jonwal.dancetempo.logic.DetectedRhythm
-import com.jonwal.dancetempo.logic.RhythmPatternDetector
 import com.jonwal.dancetempo.logic.TempoAnalyzer
 import com.jonwal.dancetempo.model.DanceMatch
 import com.jonwal.dancetempo.model.DanceMismatch
@@ -15,7 +13,6 @@ data class DanceTempoUiState(
     val isBeat1ModeActive: Boolean = false,
     val currentBpm: Int? = null,
     val detectedMeter: Int? = null, // e.g. 2, 3, 4
-    val detectedRhythm: DetectedRhythm? = null, // e.g. Foxtrott SSQQ, Samba Bounce
     val currentTpm: Int? = null,
     val matches: List<DanceMatch> = emptyList(),
     val mismatches: List<DanceMismatch> = emptyList(),
@@ -68,7 +65,6 @@ class DanceTempoViewModel : ViewModel() {
             it.copy(
                 currentBpm = null,
                 detectedMeter = null,
-                detectedRhythm = null,
                 currentTpm = null,
                 matches = emptyList(),
                 mismatches = emptyList(),
@@ -101,17 +97,10 @@ class DanceTempoViewModel : ViewModel() {
             )
         } else null
 
-        val deltas = mutableListOf<Long>()
-        for (i in 1 until timestamps.size) {
-            deltas.add(timestamps[i] - timestamps[i - 1])
-        }
-        val rhythm = RhythmPatternDetector.detectPattern(deltas)
-
         _uiState.update {
             it.copy(
                 currentBpm = bpm,
                 detectedMeter = meter,
-                detectedRhythm = rhythm,
                 currentTpm = tpm,
                 matches = evaluation?.matches ?: emptyList(),
                 mismatches = evaluation?.mismatches ?: emptyList(),
