@@ -78,15 +78,16 @@ fun LibraryScreen(
             }
 
             Row(verticalAlignment = Alignment.CenterVertically) {
-                // Tanz-Mixer Button
-                if (state.totalCount > 1) {
-                    IconButton(onClick = { isMixerOpen = true }) {
-                        Icon(
-                            imageVector = Icons.Default.AutoAwesome,
-                            contentDescription = "Tanz-Mixer",
-                            tint = AccentOrange
-                        )
-                    }
+                // Tanz-Mixer Button (Aktiv ab 2 Songs, sonst ausgegraut / disabled)
+                IconButton(
+                    onClick = { isMixerOpen = true },
+                    enabled = state.totalCount > 1
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.AutoAwesome,
+                        contentDescription = "Tanz-Mixer",
+                        tint = if (state.totalCount > 1) AccentOrange else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
+                    )
                 }
 
                 // Search Toggle
@@ -105,38 +106,6 @@ fun LibraryScreen(
                         contentDescription = "Einstellungen",
                         tint = MaterialTheme.colorScheme.onSurface
                     )
-                }
-
-                // Sort Menu
-                Box {
-                    IconButton(onClick = { sortMenuExpanded = true }) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.Sort,
-                            contentDescription = "Sortieren",
-                            tint = MaterialTheme.colorScheme.onSurface
-                        )
-                    }
-
-                    DropdownMenu(
-                        expanded = sortMenuExpanded,
-                        onDismissRequest = { sortMenuExpanded = false }
-                    ) {
-                        SongSortOrder.entries.forEach { order ->
-                            DropdownMenuItem(
-                                text = {
-                                    Text(
-                                        text = order.displayName,
-                                        fontWeight = if (state.sortOrder == order) FontWeight.Bold else FontWeight.Normal,
-                                        color = if (state.sortOrder == order) PrimaryBlue else MaterialTheme.colorScheme.onSurface
-                                    )
-                                },
-                                onClick = {
-                                    viewModel.setSortOrder(order)
-                                    sortMenuExpanded = false
-                                }
-                            )
-                        }
-                    }
                 }
             }
         }
