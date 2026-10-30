@@ -1,0 +1,5 @@
+Version 1.0.3:
+• Einheitliche Kopfzeile mit Icons für Mixer, Suche und Einstellungen
+• Kompakte Pillen zur Sortierung und Tanzfilterung
+• Vollständiges alphabetisches Tanz-Auswahl-Sheet
+• Prägnante Rhythmus- und Musikcharakteristik-Hinweise

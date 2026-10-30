@@ -1,0 +1,5 @@
+Version 1.0.3:
+• Harmonized library top bar (mixer, search, settings)
+• Compact pills for sort order and dance filter
+• Full alphabetical dance selector sheet
+• Streamlined rhythm and music character descriptions

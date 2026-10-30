@@ -1,1 +1,1 @@
-Tap song tempo (BPM), match ballroom & latin dances, and build your annotated dance song library.
+Tap song tempo, match ballroom & social dances, and save songs.
