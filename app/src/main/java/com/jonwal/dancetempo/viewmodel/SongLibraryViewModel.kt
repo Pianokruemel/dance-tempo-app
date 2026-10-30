@@ -14,7 +14,7 @@ data class SongLibraryUiState(
     val searchQuery: String = "",
     val isSearchActive: Boolean = false,
     val selectedDanceIds: Set<String> = emptySet(), // Empty means "Alle"
-    val sortOrder: SongSortOrder = SongSortOrder.NEWEST_FIRST,
+    val sortOrder: SongSortOrder = SongSortOrder.BPM_ASC, // Default to Tempo ASC
     val selectedSongForDetail: Song? = null
 )
 
@@ -23,7 +23,7 @@ class SongLibraryViewModel(private val repository: SongRepository) : ViewModel()
     private val _searchQuery = MutableStateFlow("")
     private val _isSearchActive = MutableStateFlow(false)
     private val _selectedDanceIds = MutableStateFlow<Set<String>>(emptySet())
-    private val _sortOrder = MutableStateFlow(SongSortOrder.NEWEST_FIRST)
+    private val _sortOrder = MutableStateFlow(SongSortOrder.BPM_ASC) // Default to Tempo ASC
     private val _selectedSongForDetail = MutableStateFlow<Song?>(null)
 
     val uiState: StateFlow<SongLibraryUiState> = combine(

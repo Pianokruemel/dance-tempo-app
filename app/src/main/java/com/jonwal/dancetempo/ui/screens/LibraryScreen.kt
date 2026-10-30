@@ -1,5 +1,7 @@
 package com.jonwal.dancetempo.ui.screens
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -38,6 +40,7 @@ fun LibraryScreen(
     val state by viewModel.uiState.collectAsState()
     var sortMenuExpanded by remember { mutableStateOf(false) }
     var isMixerOpen by remember { mutableStateOf(false) }
+    var isDanceFilterOpen by remember { mutableStateOf(false) }
 
     Column(
         modifier = modifier
@@ -152,41 +155,92 @@ fun LibraryScreen(
             )
         }
 
-        // --- 2. DANCE FILTER CHIPS (Horizontal Scroll) ---
-        LazyRow(
+        // --- 2. CONTROL PILLS: SORTIERUNG & TÄNZE AUSWÄHLEN ---
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 4.dp),
-            horizontalArrangement = Arrangement.spacedBy(6.dp)
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            // "Alle" Chip
-            item {
-                val isAllSelected = state.selectedDanceIds.isEmpty()
-                FilterChip(
-                    selected = isAllSelected,
-                    onClick = { viewModel.clearDanceFilter() },
-                    label = { Text("Alle", fontSize = 12.sp) },
-                    colors = FilterChipDefaults.filterChipColors(
-                        selectedContainerColor = PrimaryBlue,
-                        selectedLabelColor = Color.White
-                    ),
-                    shape = RoundedCornerShape(16.dp)
-                )
+            // Pille 1: Sortierung (BPM / Neueste)
+            Box(modifier = Modifier.weight(1f)) {
+                Surface(
+                    shape = RoundedCornerShape(20.dp),
+                    color = PrimaryBlue.copy(alpha = 0.15f),
+                    border = BorderStroke(1.dp, PrimaryBlue.copy(alpha = 0.5f)),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { sortMenuExpanded = true }
+                ) {
+                    Row(
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 7.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.Sort,
+                            contentDescription = null,
+                            tint = PrimaryBlue,
+                            modifier = Modifier.size(15.dp)
+                        )
+                        Spacer(modifier = Modifier.width(6.dp))
+                        Text(
+                            text = state.sortOrder.displayName,
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = PrimaryBlue
+                        )
+                    }
+                }
+
+                DropdownMenu(
+                    expanded = sortMenuExpanded,
+                    onDismissRequest = { sortMenuExpanded = false }
+                ) {
+                    SongSortOrder.entries.forEach { order ->
+                        DropdownMenuItem(
+                            text = {
+                                Text(
+                                    text = order.displayName,
+                                    fontWeight = if (state.sortOrder == order) FontWeight.Bold else FontWeight.Normal,
+                                    color = if (state.sortOrder == order) PrimaryBlue else MaterialTheme.colorScheme.onSurface
+                                )
+                            },
+                            onClick = {
+                                viewModel.setSortOrder(order)
+                                sortMenuExpanded = false
+                            }
+                        )
+                    }
+                }
             }
 
-            // Individual Dance Chips
-            items(DanceRepository.allDances, key = { it.id }) { dance ->
-                val isSelected = state.selectedDanceIds.contains(dance.id)
-                FilterChip(
-                    selected = isSelected,
-                    onClick = { viewModel.toggleDanceFilter(dance.id) },
-                    label = { Text(dance.name, fontSize = 12.sp) },
-                    colors = FilterChipDefaults.filterChipColors(
-                        selectedContainerColor = AccentOrange,
-                        selectedLabelColor = Color.White
-                    ),
-                    shape = RoundedCornerShape(16.dp)
-                )
+            // Pille 2: Tänze auswählen (Öffnet Sheet mit allen Tänzen alphabetisch)
+            Surface(
+                shape = RoundedCornerShape(20.dp),
+                color = AccentOrange.copy(alpha = 0.15f),
+                border = BorderStroke(1.dp, AccentOrange.copy(alpha = 0.5f)),
+                modifier = Modifier
+                    .weight(1f)
+                    .clickable { isDanceFilterOpen = true }
+            ) {
+                Row(
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 7.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "💃",
+                        fontSize = 13.sp
+                    )
+                    Spacer(modifier = Modifier.width(6.dp))
+                    Text(
+                        text = if (state.selectedDanceIds.isEmpty()) "Alle Tänze" else "${state.selectedDanceIds.size} Tänze aktiv",
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = AccentOrange
+                    )
+                }
             }
         }
 
@@ -235,6 +289,18 @@ fun LibraryScreen(
                 }
             }
         }
+    }
+
+    // Dance Filter BottomSheet (Alphabetical Selection)
+    if (isDanceFilterOpen) {
+        val alphabeticalDances = remember { DanceRepository.allDances.sortedBy { it.name } }
+        com.jonwal.dancetempo.ui.components.DanceFilterBottomSheet(
+            allDancesAlphabetical = alphabeticalDances,
+            selectedDanceIds = state.selectedDanceIds,
+            onToggleDance = { viewModel.toggleDanceFilter(it) },
+            onSelectAll = { viewModel.clearDanceFilter() },
+            onDismiss = { isDanceFilterOpen = false }
+        )
     }
 
     // Playlist Mixer BottomSheet
